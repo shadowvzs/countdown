@@ -24,12 +24,13 @@
         const now = Math.floor(Date.now() / 1000);
         const target = Math.floor(new Date(new Date().toISOString().substring(0, 10) + ' ' + elements.startAtInput.value + ':00').getTime() / 1000);
         if (diff < 0) { return alert('Target is in past'); }
-        diff = target - now;
+        diff = target - now; s
         elements.text.textContent = elements.textInput.value;
         updateCountdownText(diff + 1);
 
         const intervalId = window.setInterval(() => {
             updateCountdownText(diff);
+            if (diff === 0) { clearInterval(intervalId); }
             diff--;
         }, 1000)
     };
